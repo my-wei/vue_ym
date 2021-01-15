@@ -1,7 +1,6 @@
 import { observer } from "./observer/index";
-
+import {proxy} from './util';
 export function initState(vm) {
-  
     const opts = vm.$options;
     if (opts.props) {
         initProps(vm);
@@ -16,24 +15,28 @@ export function initState(vm) {
         initComputed(vm);
     }
     if (opts.watch) {
-        initWatch(vm);
+        initWatch(vm)
     }
 }
-function initProps(vm) {
+function initProps() {
 
 }
-function initMethods(vm) {
+function initMethods() {
 
 }
+
 function initData(vm) {
     let data = vm.$options.data;
-   
-   vm._data= data = typeof data == 'function' ? data.call(vm) : data;
+   vm._data=data = typeof data == "function" ? data.call(vm) : data;
+   console.log(vm._data)
+//    for( let key in data){
+//        proxy(vm,'_data',key)
+//    }
     observer(data);
 }
-function initComputed(vm) {
+function initComputed() {
 
 }
-function initWatch(vm) {
+function initWatch() {
 
 }

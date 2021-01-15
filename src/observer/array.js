@@ -12,11 +12,23 @@ let methods = [
 
 ]
 methods.forEach(method => {
-    arrayMethods[method] = function () {
-        console.log(this,'this')
-        console.log(arguments,'arguments')
+    arrayMethods[method] = function (...args) {
+
         //this是数组 arguments是针对数组增删改的数据
-        const result = oldArrayprotoMethods[method].apply(this, arguments)
+        const result = oldArrayprotoMethods[method].apply(this, arguments);
+        let inserted;
+        let ob=this.__ob__;
+        switch (method) {
+            case 'push':
+            case 'unshift':
+                inserted = args;
+                break
+            case 'splice':
+                inserted=args.slice(2)//arr.splice(0,1,{a,1})截取参数下标后面的几个
+            default:
+                break
+        }
+        if(inserted)ob.observerArray(inserted);
         return result;
     }
 })

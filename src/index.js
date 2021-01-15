@@ -1,8 +1,6 @@
-import { initMixin } from "./init"
-
+import {initMixin} from './init';
 function Vue(options){
-    this._init(options)//初始化操作
+  this._init(options) //入口方法，做初始化操作
 }
 initMixin(Vue)
-
-export default Vue
+export default Vue;
