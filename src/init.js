@@ -1,5 +1,5 @@
 import { initState } from "./state";
-
+import {compileToFuncions} from './compiler/index'
 export  function initMixin(Vue){
     Vue.prototype._init=function(options){
         const vm=this;
@@ -12,7 +12,18 @@ export  function initMixin(Vue){
     Vue.prototype.$mount=function(el){
         //挂载操作
         const vm=this;
+        const options=this.$options;
         el=document.querySelector(el);
-        console.log(el)
+        if(!options.render){
+            let template=options.template;
+            //没有render 将template转化成render方法
+            if(!template&&el){
+               template= el.outerHTML;//采用外部模板
+            }
+            const render = compileToFuncions(template)
+            options.render=render;
+        }else{
+
+        }
     }
 }
