@@ -3,8 +3,9 @@ import { defineProperty } from '../util';
 class Observer {
     constructor(value) {
         //判断一个对象是否被观测过看他有没有__ob__这个属性
-        defineProperty(value, "__ob__", this);
 
+        defineProperty(value, "__ob__", this);
+        //函数劫持或者叫切片编程 
         if (Array.isArray(value)) {
             value.__proto__ = arrayMethods;
             this.observerArray(value);
@@ -33,15 +34,14 @@ function defineReactive(data, key, value) {
             return value;
         },
         set(newValue) {
-            console.log("设置值")
             if (newValue == value) return
             observer(newValue);
             value = newValue;
         }
     })
+    
 }
 export function observer(data) {
-
     if (typeof data !== "object" && data !== null) {
         return
     }

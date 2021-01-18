@@ -27,11 +27,12 @@ function initMethods() {
 
 function initData(vm) {
     let data = vm.$options.data;
-   vm._data=data = typeof data == "function" ? data.call(vm) : data;
-   console.log(vm._data)
-//    for( let key in data){
-//        proxy(vm,'_data',key)
-//    }
+    vm._data = data = typeof data == "function" ? data.call(vm) : data;
+    //    console.log(vm._data)
+    //    vm=Object.assign(vm,vm._data);
+    for (let key in data) {
+        proxy(vm, '_data', key)//数据代理
+    }
     observer(data);
 }
 function initComputed() {

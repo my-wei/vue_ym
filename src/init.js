@@ -5,5 +5,14 @@ export  function initMixin(Vue){
         const vm=this;
         vm.$options=options;
         initState(vm);
+        if(vm.$options.el){
+            vm.$mount(vm.$options.el)
+        }
+    }
+    Vue.prototype.$mount=function(el){
+        //挂载操作
+        const vm=this;
+        el=document.querySelector(el);
+        console.log(el)
     }
 }

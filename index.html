@@ -6,23 +6,27 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="app">
+
+    </div>
     <h1>hello</h1>
     <script src="./dist/umd/vue.js"></script>
     <script>
        let vm= new Vue({
+           el:"#app",
             data(){
                 return{
-                    name:"小明",
-                    a:[{name:"12321"}]
+                 name:"小明 "
+                    
                 }
             },
             methods: {
                 
             },
         })
-        //开发功能时很少对数组索引进行操作，为了性能考虑不对数组进行拦截
-        //拦截可以改变数组的方法进行操作
-        console.log(vm._data.a.push(23456))
+        // vm.$mount("#app") //等价于el:"#app"
+        console.log(vm);
+  
     </script>
 </body>
 </html>
