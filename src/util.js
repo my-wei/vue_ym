@@ -7,7 +7,7 @@ export function proxy(vm, data, key) {
     * return：无
     * author：
     ================================================================*/
-    // Object.defineProperty(vm,data,{ //这么写会报错
+    // Object.defineProperty(vm,data,{ //这么写会堆栈内存报错
     //     get(){
 
     //         console.log(vm[data][key])

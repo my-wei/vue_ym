@@ -7,4 +7,9 @@ export function compileToFuncions(template) {
     //2、优化静态节点
     //3、通过这棵树 重新生成代码
    let code= generate(ast);
+   console.log(code);
+   //4、将字符串变成函数 限制取值范围 通过with来进行取值 稍后抵用render函数
+   //通过改变this 然这个函数内部取到结果了
+   let render=new Function(`with(this){return ${code}}`);
+    return render;
 }

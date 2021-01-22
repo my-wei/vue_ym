@@ -40,7 +40,6 @@ export function parseHTML(html) {
         }
     }
     function chars(text) { //文本标签
-        console.log(text, "------chars")
         text=text.replace(/\s/g,"");
         if(text){
             currentParent.children.push({
@@ -96,7 +95,6 @@ export function parseHTML(html) {
                 advance(attr[0].length);
                 match.attrs.push({ name: attr[1], value: attr[3] || attr[4] || attr[5] })
 
-                console.log(match.attrs);
             }
             if (end) {  //>删除匹配到的结束标签
                 advance(end[0].length);
