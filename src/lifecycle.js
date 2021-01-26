@@ -14,7 +14,15 @@ export function mountComponent(vm,el){
 
     //先调用render方法创建虚拟节点,再将虚拟节点渲染到页面上
     vm._update(vm._render())
+}
 
+ 
+export function callHook(vm,hook){
+    const handlers=vm.$options[hook];//vm.$options.created=[]
 
-
+    if(handlers){
+        for(let i=0;i<handlers.length;i++){
+            handlers[i].call(vm);//更改生命周期中的this
+        }
+    }
 }

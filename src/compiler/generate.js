@@ -11,7 +11,6 @@ function genProps(attrs) {
             let obj = {};
             attr.value.split(';').forEach(item => {
                 let [key, value] = item.split(':');
-                console.log(key, value)
                 obj[key] = value;
             })
             attr.value = obj;
@@ -59,7 +58,6 @@ function genchildren(el) {
 
 export function generate(el) {
     let children = genchildren(el); //儿子生成
-    console.log(el, 'el');
     let code = `_c('${el.tag}',${el.attrs.length ? `${genProps(el.attrs)}` : 'undefined'
         }${children ? `,${children}` : ''
         })`;

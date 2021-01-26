@@ -31,7 +31,7 @@ export function parseHTML(html) {
         stack.push(element);//将生成得ast元素放到栈中
     }
     function end(tagName) {  //在结尾标签处 创建父子关系
-        console.log(tagName, '-----end')
+
         let element=stack.pop();//去除栈中最后一个
         currentParent=stack[stack.length-1];
         if(currentParent){ //在闭合时可以知道这个标签得父亲是谁  双向记录

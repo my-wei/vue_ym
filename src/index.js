@@ -1,3 +1,4 @@
+import { initGlobalApi } from './global-api/index';
 import {initMixin} from './init';
 import { lifecycleMixin } from './lifecycle';
 import { renderMixin } from './vdom/index';
@@ -9,4 +10,9 @@ function Vue(options){
 initMixin(Vue);//初始化 init方法
 lifecycleMixin(Vue);//混合生命周期 _update
 renderMixin(Vue);//渲染的 _render
+
+//静态方法 Vue.conponent Vue.directive Vue.extend Vue.mixin ....
+
+initGlobalApi (Vue);
+
 export default Vue;
